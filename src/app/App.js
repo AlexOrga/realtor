@@ -20,7 +20,7 @@ class App extends React.Component {
         this.setState({listings});
       })
       .catch((err) => {
-        console.error('error with listin GET', err);
+        console.error('error with listing GET', err);
       });
   }
 
@@ -28,7 +28,7 @@ class App extends React.Component {
     return (
       <div className="App">
         <div className="col-sm-6">
-          <Listings />
+          <Listings listings={this.state.listings}/>
         </div>
 
         <div className="col-sm-6">
