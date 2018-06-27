@@ -10,9 +10,17 @@ class App extends React.Component {
   render () {
     return (
       <div className="App">
-        <Listings />
-        <Building />
-        <ListingForm />
+        <div className="col-sm-6">
+          <Listings />
+        </div>
+
+        <div className="col-sm-6">
+          <Building />
+        </div>
+
+        <div className="col-sm-12">
+          <ListingForm />
+        </div>
       </div>
     );
   }
