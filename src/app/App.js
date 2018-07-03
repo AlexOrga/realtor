@@ -3,8 +3,8 @@ import React from 'react';
 import connection from '../firebaseRequests/connection';
 import listingRequests from '../firebaseRequests/listings';
 import Listings from '../components/Listings/Listings';
-import Building from '../components/Building/Building';
 import ListingForm from '../components/ListingForm/ListingForm';
+import Building from '../components/Building/Building';
 
 import './App.css';
 
