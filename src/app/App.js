@@ -20,6 +20,19 @@ class App extends React.Component {
     });
   }
 
+  formSubmitEvent = (newListing) => {
+    listingRequests.postRequest(newListing)
+      .then(() => {
+        listingRequests.getRequest()
+          .then((listings) => {
+            this.setState({listings});
+          });
+      })
+      .catch((err) => {
+        console.error('error posting to firebase', err);
+      });
+  }
+
   componentDidMount () {
     connection();
     listingRequests.getRequest()
@@ -48,7 +61,9 @@ class App extends React.Component {
         </div>
 
         <div className="col-sm-12">
-          <ListingForm />
+          <ListingForm
+            onSubmit={this.formSubmitEvent}
+          />
         </div>
       </div>
     );
