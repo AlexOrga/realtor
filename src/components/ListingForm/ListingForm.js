@@ -6,18 +6,39 @@ class ListingForm extends React.Component {
   state = {
     newListing: {
       address: '',
+      city: '',
+      squareFootage: 0,
     },
   }
 
   formSubmit = (e) => {
+    const {onSubmit} = this.props;
     e.preventDefault();
-    console.error('you clicked submit', e);
+    onSubmit(this.state.newListing);
+  }
+
+  formFieldStringState = (name, event) => {
+    const tempListing = {...this.state.newListing};
+    tempListing[name] = event.target.value;
+    this.setState({newListing: tempListing});
+  }
+
+  formFieldNumberState = (name, event) => {
+    const tempListing = {...this.state.newListing};
+    tempListing[name] = event.target.value * 1;
+    this.setState({newListing: tempListing});
   }
 
   addressChange = (e) => {
-    const tempListing = {...this.state.newListing};
-    tempListing.address = e.target.value;
-    this.setState({newListing: tempListing});
+    this.formFieldStringState('address', e);
+  }
+
+  cityChange = (e) => {
+    this.formFieldStringState('city', e);
+  }
+
+  squareFootageChange = (e) => {
+    this.formFieldNumberState('squareFootage', e);
   }
 
   render () {
@@ -38,6 +59,32 @@ class ListingForm extends React.Component {
                 placeholder="1234 Main Street"
                 value={newListing.address}
                 onChange={this.addressChange}
+              />
+            </fieldset>
+            <fieldset className="col-xs-3">
+              <label htmlFor="city">City</label>
+              <br/>
+              <input
+                className="col-xs-12"
+                type="text"
+                id="city"
+                placeholder="Nashville"
+                value={newListing.city}
+                onChange={this.cityChange}
+              />
+            </fieldset>
+          </div>
+          <div className="row">
+            <fieldset className="col-xs-3">
+              <label htmlFor="squareFootage">Square Footage</label>
+              <br/>
+              <input
+                className="col-xs-12"
+                type="number"
+                id="squareFootage"
+                placeholder="1234 Main Street"
+                value={newListing.squareFootage}
+                onChange={this.squareFootageChange}
               />
             </fieldset>
           </div>
